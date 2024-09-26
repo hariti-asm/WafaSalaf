@@ -1,120 +1,152 @@
+@charset "UTF-8";
 body {
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
   margin: 0;
   padding: 20px;
+  background-color: #f9f9f9;
 }
 
 .container {
-  display: flex;
-  justify-content: space-between;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
-}
-
-.form-section, .summary-section {
   background-color: white;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  margin-bottom: 20px;
+}
+.header h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.header .breadcrumb {
+  font-size: 14px;
+  color: #666;
+}
+.header .back-button {
+  text-decoration: none;
+  color: #333;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.header .back-button:before {
+  content: "←";
+  margin-right: 5px;
+}
+
+.main-content {
+  display: flex;
+  gap: 40px;
 }
 
 .form-section {
-  width: 65%;
+  flex: 2;
 }
-
-.stepper {
+.form-section .steps {
   display: flex;
-  justify-content: space-between;
   margin-bottom: 20px;
 }
-
-.step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.form-section .steps .step {
+  flex: 1;
   padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
 }
-
-.step span {
-  background-color: #00adb5;
+.form-section .steps .step.active {
+  background-color: #f7e752;
+}
+.form-section .steps .step:first-child {
+  background-color: #02AFBC;
   color: white;
-  font-size: 20px;
-  border-radius: 50%;
-  padding: 10px;
-  margin-bottom: 5px;
 }
-
-.step p {
-  font-size: 14px;
-  color: #333;
+.form-section .steps .step:last-child {
+  background-color: #b3b3b3;
 }
-
-.current span {
-  background-color: #fcca00;
+.form-section form .form-group {
+  margin-bottom: 15px;
 }
-
-.active span {
-  background-color: #00adb5;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-
-input[type=email], input[type=tel] {
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.form-section form .form-group input {
   width: 100%;
-}
-
-.recaptcha {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.recaptcha input {
-  margin-right: 10px;
-}
-
-button {
-  background-color: #00adb5;
-  color: white;
-  padding: 10px 20px;
+  padding: 10px;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  border-bottom: 1px solid #ccc;
   font-size: 16px;
-  width: 100%;
 }
-
-button:hover {
-  background-color: #009ea1;
+.form-section form .form-group input::placeholder {
+  color: #999;
+}
+.form-section form .captcha {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.form-section form .captcha .checkbox {
+  width: 20px;
+  height: 20px;
+}
+.form-section form .submit-btn {
+  background-color: #02AFBC;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  text-align: center;
+}
+.form-section form .submit-btn small {
+  display: block;
+  font-size: 12px;
+  margin-top: 5px;
 }
 
 .summary-section {
-  width: 30%;
+  flex: 1;
+  background-color: #f9f9f9;
+  padding: 20px;
 }
-
-.summary-details h4 {
-  margin-top: 0;
+.summary-section h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
 }
-
-.summary-details p {
-  margin: 10px 0;
+.summary-section .summary-content .summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
-
-.summary-details strong {
+.summary-section .summary-content .summary-item .label {
   font-weight: bold;
+}
+.summary-section .summary-content .summary-item .value {
+  color: #02AFBC;
+}
+
+.footer {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #666;
+}
+
+.error-alert {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 18px;
+  z-index: 1000;
 }
 
 /*# sourceMappingURL=cordinates.css.map */

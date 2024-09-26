@@ -1,59 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Application</title>
+    <title>Demander mon crédit en ligne</title>
     <link rel="stylesheet" href="cordinates.css">
 </head>
 <body>
     <div class="container">
-        <div class="form-section">
-            <div class="stepper">
-                <div class="step active">
-                    <span>1</span>
-                    <p>Simuler mon crédit</p>
+        <header class="header">
+            <div class="breadcrumb">Accueil / Demander mon crédit en ligne</div>
+            <h1>Demander mon crédit en ligne</h1>
+        </header>
+
+        <main class="main-content">
+            <section class="form-section">
+                <div class="steps">
+                    <div class="step">1<br>Simuler mon crédit</div>
+                    <div class="step active">2<br>Mes coordonnées</div>
+                    <div class="step">3<br>Mes infos personnelles</div>
                 </div>
-                <div class="step current">
-                    <span>2</span>
-                    <p>Mes coordonnées</p>
-                </div>
-                <div class="step">
-                    <span>3</span>
-                    <p>Mes infos personnelles</p>
-                </div>
-            </div>
-            <div class="form-container">
-                <form action="" method="POST">
-                    <label for="email">Email*</label>
-                    <input type="email" id="email" name="email" required>
-                    
-                    <label for="phone">Téléphone mobile*</label>
-                    <input type="tel" id="phone" name="phone" required>
-                    
-                    <div class="recaptcha">
-                        <input type="checkbox" id="recaptcha">
-                        <label for="recaptcha">Je ne suis pas un robot</label>
+
+                <form id="creditForm">
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Email*" required>
                     </div>
-
-                    <button type="submit">Continuer <br> Sans engagement</button>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder="Téléphone mobile*" required>
+                    </div>
+                    
+                    <div class="captcha">
+                        <label>
+                            <input type="checkbox" id="captcha" required> Je ne suis pas un robot
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn">Continuer<br>Sans engagement</button>
+                    <div class="footer">
+                        <p>Simulation à titre indicatif et non contractuelle. La mensualité minimale est de 180 dirhams. Un client Wafasalaf peut bénéficier d'une tarification plus avantageuse en fonction de ses conditions préférentielles.</p>
+                        <p>Conformément à la loi 09-08, vous disposez d'un droit d'accès, de rectification et d'opposition au traitement de vos données personnelles. Ce traitement est autorisé par la CNDP sous le numéro A-GC-206/2014.</p>
+                    </div>
                 </form>
-            </div>
-        </div>
-        <div class="summary-section">
-            <h3>Mon récapitulatif</h3>
-            <div class="summary-details">
-                <h4>Mon projet</h4>
-                <p>Prêt Personnel</p>
+            </section>
 
-                <h4>Détails de mon crédit</h4>
-                <p>Vous êtes: <strong>Fonctionnaire</strong></p>
-                <p>Montant: <strong>83 000 DH</strong></p>
-                <p>Durée: <strong>24 mois</strong></p>
-                <p>Mensualité: <strong>3 805,18 DH</strong></p>
-                <p>Frais de dossier: <strong>1 826,00 DH</strong></p>
-            </div>
-        </div>
+            <aside class="summary-section">
+                <h2>Mon récapitulatif</h2>
+                <div class="summary-content">
+                    <div class="summary-item">
+                        <span class="label">Mon projet</span>
+                        <span class="value">Prêt Personnel</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Vous êtes:</span>
+                        <span class="value">Fonctionnaire</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Montant:</span>
+                        <span class="value">83 000 DH</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Durée:</span>
+                        <span class="value">24 mois</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Mensualité:</span>
+                        <span class="value">3 805,18 DH</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Frais de dossier:</span>
+                        <span class="value">1 826,00 DH</span>
+                    </div>
+                </div>
+            </aside>
+        </main>
     </div>
+
+    <div id="error-alert" class="error-alert">
+        Veuillez vérifier vos informations.
+    </div>
+
+    <script >
+
+document.getElementById('creditForm').addEventListener('submit', function(event) {
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const errorAlert = document.getElementById('error-alert');
+
+    const phoneRegex = /^(07|06)\d{8}$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    let isValid = true;
+
+    if (!phoneRegex.test(phoneInput.value)) {
+        isValid = false;
+        phoneInput.style.borderColor = 'red';
+    } else {
+        phoneInput.style.borderColor = '';
+    }
+
+    if (!emailRegex.test(emailInput.value)) {
+        isValid = false;
+        emailInput.style.borderColor = 'red';
+    } else {
+        emailInput.style.borderColor = '';
+    }
+
+    if (!isValid) {
+        errorAlert.style.display = 'block';
+        event.preventDefault(); 
+    } else {
+        errorAlert.style.display = 'none';
+    }
+});
+
+    </script>
 </body>
 </html>
