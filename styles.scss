@@ -1,0 +1,130 @@
+$primary-color: #00a0b0;
+$secondary-color: #ffd700;
+$gray-color: #cccccc;
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+    flex: 3;
+    padding: 20px;
+}
+
+.steps {
+    display: flex;
+    margin-bottom: 20px;
+
+    .step {
+        flex: 1;
+        text-align: center;
+        padding: 10px;
+        background-color: $gray-color;
+        color: white;
+        font-size: 14px;
+
+        &.active {
+            background-color: $secondary-color;
+        }
+    }
+}
+
+.credit-form {
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select, input[type="range"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid $gray-color;
+            border-radius: 4px;
+        }
+
+        output {
+            display: inline-block;
+            margin-top: 5px;
+        }
+    }
+
+    .btn-continue {
+        background-color: $primary-color;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        text-align: center;
+    }
+}
+
+.summary {
+    width: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+
+    h2 {
+        background-color: #f8f9fa;
+        color: #2c3e50;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 15px 20px;
+        margin: 0;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .summary-content {
+        padding: 15px 20px;
+
+        h3 {
+            color: #6c757d;
+            font-size: 16px;
+            font-weight: normal;
+            margin: 0 0 5px 0;
+        }
+
+        .project-type {
+            color: #17a2b8;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0;
+        }
+    }
+
+    .summary-footer {
+        height: 20px;
+        background: linear-gradient(to bottom, transparent, #fff),
+                    linear-gradient(135deg, #ffffff 33.33%, transparent 33.33%) 0 0/20px 20px repeat-x,
+                    linear-gradient(225deg, #ffffff 33.33%, transparent 33.33%) 0 0/20px 20px repeat-x;
+        background-position: 0 0, 10px 0, 0 0;
+    }
+}
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application</title>
+    <link rel="stylesheet" href="cordinates.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-section">
+            <div class="stepper">
+                <div class="step active">
+                    <span>1</span>
+                    <p>Simuler mon crédit</p>
+                </div>
+                <div class="step current">
+                    <span>2</span>
+                    <p>Mes coordonnées</p>
+                </div>
+                <div class="step">
+                    <span>3</span>
+                    <p>Mes infos personnelles</p>
+                </div>
+            </div>
+            <div class="form-container">
+                <form action="" method="POST">
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="phone">Téléphone mobile*</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    
+                    <div class="recaptcha">
+                        <input type="checkbox" id="recaptcha">
+                        <label for="recaptcha">Je ne suis pas un robot</label>
+                    </div>
+
+                    <button type="submit">Continuer <br> Sans engagement</button>
+                </form>
+            </div>
+        </div>
+        <div class="summary-section">
+            <h3>Mon récapitulatif</h3>
+            <div class="summary-details">
+                <h4>Mon projet</h4>
+                <p>Prêt Personnel</p>
+
+                <h4>Détails de mon crédit</h4>
+                <p>Vous êtes: <strong>Fonctionnaire</strong></p>
+                <p>Montant: <strong>83 000 DH</strong></p>
+                <p>Durée: <strong>24 mois</strong></p>
+                <p>Mensualité: <strong>3 805,18 DH</strong></p>
+                <p>Frais de dossier: <strong>1 826,00 DH</strong></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

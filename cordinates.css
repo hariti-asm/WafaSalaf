@@ -1,0 +1,120 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.form-section, .summary-section {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-section {
+  width: 65%;
+}
+
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.step span {
+  background-color: #00adb5;
+  color: white;
+  font-size: 20px;
+  border-radius: 50%;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.step p {
+  font-size: 14px;
+  color: #333;
+}
+
+.current span {
+  background-color: #fcca00;
+}
+
+.active span {
+  background-color: #00adb5;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+input[type=email], input[type=tel] {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.recaptcha {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.recaptcha input {
+  margin-right: 10px;
+}
+
+button {
+  background-color: #00adb5;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #009ea1;
+}
+
+.summary-section {
+  width: 30%;
+}
+
+.summary-details h4 {
+  margin-top: 0;
+}
+
+.summary-details p {
+  margin: 10px 0;
+}
+
+.summary-details strong {
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=cordinates.css.map */
