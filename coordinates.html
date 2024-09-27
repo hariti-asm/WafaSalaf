@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demander mon crédit en ligne</title>
     <link rel="stylesheet" href="cordinates.css">
-    
 </head>
 <body>
     <div class="container">
@@ -46,29 +45,27 @@
             <aside class="summary-section">
                 <h2>Mon récapitulatif</h2>
                 <div class="summary-content">
-                    <div class="summary-item">
-                        <span class="label">Mon projet</span>
-                        <span class="value">Prêt Personnel</span>
-                    </div>
+                    <p>Mon projet</p>
+                    <p class="project-type">Prêt Personnel</p>
                     <div class="summary-item">
                         <span class="label">Vous êtes:</span>
-                        <span class="value">Fonctionnaire</span>
+                        <span class="value" id="userStatus">Fonctionnaire</span>
                     </div>
                     <div class="summary-item">
                         <span class="label">Montant:</span>
-                        <span class="value">83 000 DH</span>
+                        <span class="value" id="amount">296 000 DH</span>
                     </div>
                     <div class="summary-item">
                         <span class="label">Durée:</span>
-                        <span class="value">24 mois</span>
+                        <span class="value" id="duration">54 mois</span>
                     </div>
                     <div class="summary-item">
                         <span class="label">Mensualité:</span>
-                        <span class="value">3 805,18 DH</span>
+                        <span class="value" id="monthlyPayment">6 642,50 DH</span>
                     </div>
                     <div class="summary-item">
                         <span class="label">Frais de dossier:</span>
-                        <span class="value">1 826,00 DH</span>
+                        <span class="value" id="frais-dossier-output">6 512,00 DH</span>
                     </div>
                 </div>
             </aside>
@@ -77,64 +74,78 @@
 
     <div id="error-alert" class="error-alert">
         <div class="error-message">
-       <p> .  Veuillez vérifier vos informations.</p>  
-
+            <p>Veuillez vérifier vos informations.</p>  
         </div>
         <button class="close-btn">Fermer</button>
     </div>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const creditForm = document.getElementById('creditForm');
-        const emailInput = document.getElementById('email');
-        const phoneInput = document.getElementById('phone');
-        const errorAlert = document.getElementById('error-alert');
-        const closeBtn = errorAlert.querySelector('.close-btn');
+    // Récupérer les valeurs stockées depuis localStorage
+    const projectType = localStorage.getItem('projectType') || 'Prêt Personnel';
+    const userStatus = localStorage.getItem('userStatus') || 'Fonctionnaire';
+    const amount = localStorage.getItem('amount') || '--';
+    const duration = localStorage.getItem('duration') || '--';
+    const monthlyPayment = localStorage.getItem('monthlyPayment') || '--';
+    const fraisDossier = localStorage.getItem('fraisDossier') || '--'; 
 
-        const phoneRegex = /^(07|06)\d{8}$/;
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    document.getElementById('projectType').textContent = projectType;
+    document.getElementById('userStatus').textContent = userStatus;
+    document.getElementById('amount').textContent = `${amount} DH`;
+    document.getElementById('duration').textContent = `${duration} mois`;
+    document.getElementById('monthlyPayment').textContent = `${monthlyPayment} DH`;
+    document.getElementById('frais-dossier-output').textContent = `${fraisDossier} DH`; 
 
-        function showAlert() {
-            errorAlert.classList.add('error-alert-visible');
+    const creditForm = document.getElementById('creditForm');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const errorAlert = document.getElementById('error-alert');
+    const closeBtn = errorAlert.querySelector('.close-btn');
+
+    const phoneRegex = /^(07|06)\d{8}$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    function showAlert() {
+        errorAlert.classList.add('error-alert-visible');
+    }
+
+    function hideAlert() {
+        errorAlert.classList.remove('error-alert-visible');
+    }
+
+    closeBtn.addEventListener('click', hideAlert);
+
+    creditForm.addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        let isValid = true;
+
+        if (!phoneRegex.test(phoneInput.value)) {
+            console.log('Invalid phone number');
+            isValid = false;
+            phoneInput.style.borderColor = 'red';
+        } else {
+            console.log('Valid phone number');
+            phoneInput.style.borderColor = '';
         }
 
-        function hideAlert() {
-            errorAlert.classList.remove('error-alert-visible');
+        if (!emailRegex.test(emailInput.value)) {
+            console.log('Invalid email');
+            isValid = false;
+            emailInput.style.borderColor = 'red';
+        } else {
+            console.log('Valid email');
+            emailInput.style.borderColor = '';
         }
 
-        closeBtn.addEventListener('click', hideAlert);
-
-        creditForm.addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            let isValid = true;
-
-            if (!phoneRegex.test(phoneInput.value)) {
-                console.log('Invalid phone number');
-                isValid = false;
-                phoneInput.style.borderColor = 'red';
-            } else {
-                console.log('Valid phone number');
-                phoneInput.style.borderColor = '';
-            }
-
-            if (!emailRegex.test(emailInput.value)) {
-                console.log('Invalid email');
-                isValid = false;
-                emailInput.style.borderColor = 'red';
-            } else {
-                console.log('Valid email');
-                emailInput.style.borderColor = '';
-            }
-
-            if (!isValid) {
-                showAlert();
-            } else {
-                hideAlert();
-                console.log('Form is valid, you can submit it now');
-                
-            }
-        });
+        if (!isValid) {
+            showAlert();
+        } else {
+            hideAlert();
+            console.log('Form is valid, you can submit it now');
+        }
     });
+});
+
     </script>
 </body>
 </html>

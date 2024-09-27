@@ -5,32 +5,59 @@ document.addEventListener('DOMContentLoaded', function() {
     const durationOutput = document.getElementById('duration-output');
     const monthlyInput = document.getElementById('monthly');
     const monthlyOutput = document.getElementById('monthly-output');
+    const fraisDossierOutput = document.getElementById('frais-dossier-output');
 
     function syncInputs(input, output) {
         input.addEventListener('input', function() {
             output.textContent = this.value;
             calculateMonthly();
+            calculateFraisDossier();
         });
     }
 
     function calculateMonthly() {
-        const amount = parseFloat(amountInput.value);
-        const duration = parseFloat(durationInput.value);
-        const interestRate = 0.05; 
-        const monthlyRate = interestRate / 12;
+        const K = parseFloat(amountInput.value); // capital emprunté
+        const t = 0.12; // taux annuel (12% just an example)
+        const n = parseFloat(durationInput.value); // nombre de mensualités
 
-        const monthly = (amount * monthlyRate * Math.pow(1 + monthlyRate, duration)) / (Math.pow(1 + monthlyRate, duration) - 1);
-        
-        monthlyInput.value = monthly.toFixed(2);
-        monthlyOutput.textContent = monthly.toFixed(2);
+        const monthlyRate = t / 12;
+
+        const m = (K * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -n));
+
+        monthlyInput.value = m.toFixed(2);
+        monthlyOutput.textContent = m.toFixed(2);
+
+        localStorage.setItem('monthly', m.toFixed(2));
     }
+
+    const calculateFraisDossier = () => {
+        const montant = parseFloat(amountInput.value);
+        const pourcentageFraisDossier = 0.01;
+
+        const fraisMin = 100;
+        const fraisMax = 2000;
+ 
+        let fraisDossier = montant * pourcentageFraisDossier;
+ 
+        fraisDossier = Math.min(Math.max(fraisDossier, fraisMin), fraisMax);
+
+        fraisDossierOutput.textContent = `${fraisDossier.toFixed(2)} DH`;
+
+        localStorage.setItem('fraisDossier', fraisDossier.toFixed(2));
+    };
 
     syncInputs(amountInput, amountOutput);
     syncInputs(durationInput, durationOutput);
     calculateMonthly();
-
+    calculateFraisDossier();
+ 
     document.getElementById('loan-form').addEventListener('submit', function(e) {
         e.preventDefault();
-        alert('Form submitted! Montant: ' + amountInput.value + ' DH, Durée: ' + durationInput.value + ' mois, Mensualité: ' + monthlyInput.value + ' DH');
+        localStorage.setItem('amount', amountInput.value);
+        localStorage.setItem('duration', durationInput.value);
+        
+        
+        alert('Values stored! Redirecting to next page...');
+        window.location.href = 'coordinates.html';
     });
 });
