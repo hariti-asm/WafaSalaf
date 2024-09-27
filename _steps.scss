@@ -1,0 +1,42 @@
+$inactive-step-bg: #cccccc;
+$active-step-bg: #ffd700;
+$step-text-color: white;
+$step-font-size: 14px;
+
+.steps {
+    display: flex;
+    margin-bottom: 20px;
+    position: relative; 
+    .step {
+        flex: 1;
+        text-align: center;
+        padding: 10px;
+        background-color: $inactive-step-bg;
+        color: $step-text-color;
+        font-size: $step-font-size;
+        transition: background-color 0.3s ease, transform 0.3s ease; 
+
+        &.active {
+            background-color: $active-step-bg;
+            position: relative; 
+            transform: translateY(-5px); 
+            
+            &::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: -10px; 
+                transform: translateX(-50%); 
+                width: 0;
+                height: 0;
+                border-left: 10px solid transparent; 
+                border-right: 10px solid transparent; 
+                border-top: 10px solid $active-step-bg;
+            }
+        }
+
+        &:hover {
+            background-color: rgb(4, 93, 20);
+        }
+    }
+}

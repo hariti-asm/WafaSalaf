@@ -1,3 +1,5 @@
+@import '_steps.css'; 
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
@@ -20,42 +22,32 @@ body {
   padding: 20px;
 }
 
-.steps {
-  display: flex;
-  margin-bottom: 20px;
-}
-.steps .step {
-  flex: 1;
-  text-align: center;
-  padding: 10px;
-  background-color: #cccccc;
-  color: white;
-  font-size: 14px;
-}
-.steps .step.active {
-  background-color: #ffd700;
-}
-
 .credit-form h2 {
   margin-bottom: 20px;
 }
+
 .credit-form .form-group {
   margin-bottom: 20px;
 }
+
 .credit-form .form-group label {
   display: block;
   margin-bottom: 5px;
 }
-.credit-form .form-group select, .credit-form .form-group input[type=range] {
+
+.credit-form .form-group select,
+.credit-form .form-group input[type=range] {
   width: 100%;
   padding: 8px;
   border: 1px solid #cccccc;
   border-radius: 4px;
 }
+
 .credit-form .form-group output {
   display: inline-block;
   margin-top: 5px;
 }
+
 .credit-form .btn-continue {
   background-color: #00a0b0;
   color: white;
@@ -74,6 +66,7 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
+
 .summary h2 {
   background-color: #f8f9fa;
   color: #2c3e50;
@@ -83,24 +76,30 @@ body {
   margin: 0;
   border-bottom: 1px solid #e9ecef;
 }
+
 .summary .summary-content {
   padding: 15px 20px;
 }
+
 .summary .summary-content h3 {
   color: #6c757d;
   font-size: 16px;
   font-weight: normal;
   margin: 0 0 5px 0;
 }
+
 .summary .summary-content .project-type {
   color: #17a2b8;
   font-size: 18px;
   font-weight: bold;
   margin: 0;
 }
+
 .summary .summary-footer {
   height: 20px;
-  background: linear-gradient(to bottom, transparent, #fff), linear-gradient(135deg, #ffffff 33.33%, transparent 33.33%) 0 0/20px 20px repeat-x, linear-gradient(225deg, #ffffff 33.33%, transparent 33.33%) 0 0/20px 20px repeat-x;
+  background: linear-gradient(to bottom, transparent, #fff),
+              linear-gradient(135deg, #ffffff 33.33%, transparent 33.33%) 0 0/20px 20px repeat-x,
+              linear-gradient(225deg, #ffffff 33.33%, transparent 33.33%) 0 0/20px 20px repeat-x;
   background-position: 0 0, 10px 0, 0 0;
 }
 
@@ -109,5 +108,3 @@ body {
     flex-direction: column;
   }
 }
-
-/*# sourceMappingURL=styles.css.map */

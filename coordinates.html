@@ -80,72 +80,77 @@
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    // Récupérer les valeurs stockées depuis localStorage
-    const projectType = localStorage.getItem('projectType') || 'Prêt Personnel';
-    const userStatus = localStorage.getItem('userStatus') || 'Fonctionnaire';
-    const amount = localStorage.getItem('amount') || '--';
-    const duration = localStorage.getItem('duration') || '--';
-    const monthlyPayment = localStorage.getItem('monthlyPayment') || '--';
-    const fraisDossier = localStorage.getItem('fraisDossier') || '--'; 
-
-    document.getElementById('projectType').textContent = projectType;
-    document.getElementById('userStatus').textContent = userStatus;
-    document.getElementById('amount').textContent = `${amount} DH`;
-    document.getElementById('duration').textContent = `${duration} mois`;
-    document.getElementById('monthlyPayment').textContent = `${monthlyPayment} DH`;
-    document.getElementById('frais-dossier-output').textContent = `${fraisDossier} DH`; 
-
-    const creditForm = document.getElementById('creditForm');
-    const emailInput = document.getElementById('email');
-    const phoneInput = document.getElementById('phone');
-    const errorAlert = document.getElementById('error-alert');
-    const closeBtn = errorAlert.querySelector('.close-btn');
-
-    const phoneRegex = /^(07|06)\d{8}$/;
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-    function showAlert() {
-        errorAlert.classList.add('error-alert-visible');
-    }
-
-    function hideAlert() {
-        errorAlert.classList.remove('error-alert-visible');
-    }
-
-    closeBtn.addEventListener('click', hideAlert);
-
-    creditForm.addEventListener('submit', function(event) {
-        event.preventDefault(); 
-        let isValid = true;
-
-        if (!phoneRegex.test(phoneInput.value)) {
-            console.log('Invalid phone number');
-            isValid = false;
-            phoneInput.style.borderColor = 'red';
-        } else {
-            console.log('Valid phone number');
-            phoneInput.style.borderColor = '';
-        }
-
-        if (!emailRegex.test(emailInput.value)) {
-            console.log('Invalid email');
-            isValid = false;
-            emailInput.style.borderColor = 'red';
-        } else {
-            console.log('Valid email');
-            emailInput.style.borderColor = '';
-        }
-
-        if (!isValid) {
-            showAlert();
-        } else {
-            hideAlert();
-            console.log('Form is valid, you can submit it now');
-        }
-    });
-});
-
-    </script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Récupérer les valeurs stockées depuis localStorage
+            const projectType = localStorage.getItem('projectType') || 'Prêt Personnel';
+            const userStatus = localStorage.getItem('userStatus') || 'Fonctionnaire';
+            const amount = localStorage.getItem('amount') || '--';
+            const duration = localStorage.getItem('duration') || '--';
+            const monthlyPayment = localStorage.getItem('monthlyPayment') || '--';
+            const fraisDossier = localStorage.getItem('fraisDossier') || '--'; 
+        
+            document.getElementById('userStatus').textContent = userStatus;
+            document.getElementById('amount').textContent = `${amount} DH`;
+            document.getElementById('duration').textContent = `${duration} mois`;
+            document.getElementById('monthlyPayment').textContent = `${monthlyPayment} DH`;
+            document.getElementById('frais-dossier-output').textContent = `${fraisDossier} DH`; 
+        
+            const creditForm = document.getElementById('creditForm');
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+            const errorAlert = document.getElementById('error-alert');
+            const closeBtn = errorAlert.querySelector('.close-btn');
+        
+            const phoneRegex = /^(07|06)\d{8}$/;
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        
+            function showAlert() {
+                errorAlert.classList.add('error-alert-visible');
+            }
+        
+            function hideAlert() {
+                errorAlert.classList.remove('error-alert-visible');
+            }
+        
+            closeBtn.addEventListener('click', hideAlert);
+        
+            creditForm.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+                let isValid = true;
+        
+                if (!phoneRegex.test(phoneInput.value)) {
+                    console.log('Invalid phone number');
+                    isValid = false;
+                    phoneInput.style.borderColor = 'red';
+                } else {
+                    console.log('Valid phone number');
+                    phoneInput.style.borderColor = '';
+                }
+        
+                if (!emailRegex.test(emailInput.value)) {
+                    console.log('Invalid email');
+                    isValid = false;
+                    emailInput.style.borderColor = 'red';
+                } else {
+                    console.log('Valid email');
+                    emailInput.style.borderColor = '';
+                }
+        
+                if (!isValid) {
+                    showAlert();
+                } else {
+                    hideAlert();
+                    console.log('Form is valid, you can submit it now');
+                    
+                    // Store email and phone number in localStorage
+                    localStorage.setItem('email', emailInput.value);
+                    localStorage.setItem('phone', phoneInput.value);
+                    
+                    window.location.href = 'personnal_info.html';
+                }
+            });
+        });
+        </script>
+        
 </body>
 </html>
