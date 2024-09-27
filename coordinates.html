@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demander mon crédit en ligne</title>
     <link rel="stylesheet" href="cordinates.css">
+    
 </head>
 <body>
     <div class="container">
@@ -75,43 +76,65 @@
     </div>
 
     <div id="error-alert" class="error-alert">
-        Veuillez vérifier vos informations.
+        <div class="error-message">
+       <p> .  Veuillez vérifier vos informations.</p>  
+
+        </div>
+        <button class="close-btn">Fermer</button>
     </div>
 
-    <script >
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const creditForm = document.getElementById('creditForm');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+        const errorAlert = document.getElementById('error-alert');
+        const closeBtn = errorAlert.querySelector('.close-btn');
 
-document.getElementById('creditForm').addEventListener('submit', function(event) {
-    const emailInput = document.getElementById('email');
-    const phoneInput = document.getElementById('phone');
-    const errorAlert = document.getElementById('error-alert');
+        const phoneRegex = /^(07|06)\d{8}$/;
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    const phoneRegex = /^(07|06)\d{8}$/;
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        function showAlert() {
+            errorAlert.classList.add('error-alert-visible');
+        }
 
-    let isValid = true;
+        function hideAlert() {
+            errorAlert.classList.remove('error-alert-visible');
+        }
 
-    if (!phoneRegex.test(phoneInput.value)) {
-        isValid = false;
-        phoneInput.style.borderColor = 'red';
-    } else {
-        phoneInput.style.borderColor = '';
-    }
+        closeBtn.addEventListener('click', hideAlert);
 
-    if (!emailRegex.test(emailInput.value)) {
-        isValid = false;
-        emailInput.style.borderColor = 'red';
-    } else {
-        emailInput.style.borderColor = '';
-    }
+        creditForm.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            let isValid = true;
 
-    if (!isValid) {
-        errorAlert.style.display = 'block';
-        event.preventDefault(); 
-    } else {
-        errorAlert.style.display = 'none';
-    }
-});
+            if (!phoneRegex.test(phoneInput.value)) {
+                console.log('Invalid phone number');
+                isValid = false;
+                phoneInput.style.borderColor = 'red';
+            } else {
+                console.log('Valid phone number');
+                phoneInput.style.borderColor = '';
+            }
 
+            if (!emailRegex.test(emailInput.value)) {
+                console.log('Invalid email');
+                isValid = false;
+                emailInput.style.borderColor = 'red';
+            } else {
+                console.log('Valid email');
+                emailInput.style.borderColor = '';
+            }
+
+            if (!isValid) {
+                showAlert();
+            } else {
+                hideAlert();
+                console.log('Form is valid, you can submit it now');
+                
+            }
+        });
+    });
     </script>
 </body>
 </html>
